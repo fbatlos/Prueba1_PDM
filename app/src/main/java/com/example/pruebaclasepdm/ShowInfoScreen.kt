@@ -1,7 +1,9 @@
 package com.example.pruebaclasepdm
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,21 +16,23 @@ import kotlinx.serialization.json.Json
 
 @Composable
 fun ShowInfoScreen(modifier: Modifier, PersonaInfo:String? , onBack:()->Unit){
-
+    /*
+    Uso nullPonterException por si por algun casual no se llegasé a encontrar nada en el envio
+     */
     val personaNotNull:String = PersonaInfo ?: throw NullPointerException("No hay Persona.")
 
     val usuario = Json.decodeFromString<Persona>(personaNotNull)
 
-    Box (
+
+    Column (
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White)
-        ,
-        contentAlignment = Alignment.Center
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ){
-        Text("Bienvenido : ${usuario.nombre} ${usuario.apellido} .\nSe ha registrado correctamente\ncon su DNI : ${usuario.nif}" , color = Color.Black)
+        Text("Bienvenido : ${usuario.nombre} ${usuario.apellido}." , color = Color.Black)
+
+        Text("Se ha registrado correctamente\n con su DNI : ${usuario.nif}" , color = Color.Black)
     }
-
-
-
 }

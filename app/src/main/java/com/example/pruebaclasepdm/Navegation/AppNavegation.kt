@@ -15,7 +15,7 @@ import com.example.pruebaclasepdm.ShowInfoScreen
 @Composable
 fun AppNavegation(modifier: Modifier ){
     val navContralador = rememberNavController()
-
+//Es el encargado de iniciar cada composable segun la route
     NavHost(
         navController = navContralador,
         startDestination = AppScreen.InputScreen.router
